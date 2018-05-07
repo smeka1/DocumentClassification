@@ -2,4 +2,6 @@
 *.csv
 .git
 node_modules/
+Training/
+others/
 

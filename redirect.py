@@ -22,18 +22,22 @@ def index():
 @app.route('/api/classify',methods = ['POST', 'GET'])
 def classify():
    if request.method == 'POST':
-      user = request.form['words']
+      content = request.form.get('words')
       if(request.headers.get('Content-Type') == 'text/html'):
-         return "HTML response:\n"+ clfpy.predict([user])
+         print(request.form)
+         if(3==2):
+            return "HTML response: "+ clfpy.predict([content])
       else:
-         return "JSON response: "+ clfpy.predict([user]) 
+         print(content)
+         return "JSON response:\n"+ jsonify(prediction=clfpy.predict([content])) 
    else:
-      user = request.args.get('words')
+      content = request.args.get('words')
       if(request.headers.get('Content-Type') == 'text/html'):
+         #print(content)
          return "HTML response:\n"+ clfpy.predict([user])
       else:
          return jsonify (prediction=clfpy.predict([user]))
-      
+   return "End of function"   
 
 @app.route('/api/classify_form')
 def classifyDoc():
