@@ -12,7 +12,7 @@ def predict(list):
     
     predicted_IDs = loaded_model.predict(text)
     for ID in predicted_IDs:
-        print(dict[ID])
+        # print(dict[ID])
         return dict[ID]
 
 def main():
