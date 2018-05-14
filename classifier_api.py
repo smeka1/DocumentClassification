@@ -28,7 +28,9 @@ def classify():
       if(request.headers.get('Content-Type') == 'application/json'):
          #json.dump(request.get_json())
          content = request.get_json().get('words')
-         return  jsonify( prediction=clfpy.predict([content]))
+         if(content is None):
+            return "Enter value for parameter:words."
+         return  json.dumps([{'prediction':clfpy.predict([content])}] )
       else:
          #print(content)
          if(content is None):
